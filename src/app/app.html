@@ -1,0 +1,24 @@
+<!-- <h1>Main</h1>
+<input #searchBox type="text">
+<button (click)="searchBox.focus()">Focus Input</button> -->
+<div>
+
+    <form [formGroup]="customForm">
+
+        <input type="text" formControlName="name">
+        @if(customForm.get('name')?.touched &&customForm.get('name')?.hasError('required')){
+        <span> required</span>
+        }
+        @if(customForm.get('name')?.touched &&customForm.get('name')?.hasError('noSpl') ){
+        <span>spl char not allowed</span>
+        }
+
+        <button type="submit" (click)="submit()">Submit</button>
+
+    </form>
+
+    @defer {
+    jk {{parentCount}}
+    <app-dashboard [(count)]="parentCount" ngSkipHydration></app-dashboard>
+    }
+</div>
