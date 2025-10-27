@@ -1,9 +1,11 @@
 import { Component, computed, input, model } from '@angular/core';
 import { CommonModule, NgPlural } from '@angular/common';
+import { SideBar } from '../shared/side-bar/side-bar';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  imports: [CommonModule, SideBar, RouterOutlet],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
   standalone: true,

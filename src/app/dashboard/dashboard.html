@@ -1,16 +1,7 @@
-<!-- <p>{{ 'kanna is the' | truncate:'arg':'arg3'}}</p>
+<div>
+    <div><app-side-bar></app-side-bar></div>
 
-<p>searchbox.</p>
-<input type="text" [duration]="1000" (debounceValue)="debounceValue($event)" debounce>
-
-<div [ngPlural]="numberCount">
-    <ng-template ngPluralCase="=0">No items</ng-template>
-    <ng-template ngPluralCase="=1">One item</ng-template>
-    <ng-template ngPluralCase="other">{{numberCount}} items</ng-template>
-</div> -->
-
-<p>searchbox.</p>
-
-<!-- @Input -->
-{{`sdfs ${count()}`}}
-<button (click)="sds()">d</button>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>
