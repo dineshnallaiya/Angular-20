@@ -1,1 +1,6 @@
-<p>model-input works!</p>
+@for(user of totalValue();track user.age ){
+<p>{{ user.name }} — {{ user.age }}</p>
+}
+
+
+<app-child [(realTimeCount)]="totalValue"></app-child>
