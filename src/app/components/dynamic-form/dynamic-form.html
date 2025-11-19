@@ -1,0 +1,56 @@
+<!-- Generate only ts and html -->
+<!-- --skip-tests=true --style=true -->
+<form [formGroup]="userFrom">
+
+    <div *ngFor="let field of fields">
+
+        <div *ngIf="field.type == 'text'">
+            <label for=""> {{field.label}}</label>
+            <input [type]="field.type" [formControlName]="field.name">
+        </div><br />
+        @if(field.type == 'dropdown'){
+        <label for=""> {{field.label}}</label>
+        <select [name]="field.name" [id]="field.label" [formControlName]="field.name" (change)="onChangegender()">
+            @for(opt of field.options;track opt.key){
+            <option [value]="opt.key">{{opt.label}}</option>
+            }
+        </select>
+        }
+        @if(field.type == 'file'){
+        <div>
+            <label for=""> {{field.label}}</label>
+            <input [type]="field.type" [formControlName]="field.name">
+        </div>
+        }
+        <div *ngIf="field.type == 'radio'">
+            <label for=""> {{field.label}}</label>
+            <div *ngFor="let opt of field.options">
+                <label [for]="opt.key + field.label"> {{opt.label}}</label>
+                <input [type]="field.type" [value]="opt.key" [name]="field.name" [id]="opt.key +  field.label"
+                    [formControlName]="field.name">
+
+
+            </div>
+
+        </div>
+        <div *ngIf="field.type == 'checkbox'">
+            <label for=""> {{field.label}}</label>
+            <div *ngFor="let opt of field.options;let i= index">
+                <label [for]="opt.key + field.label"> {{opt.label}}</label>
+                <input [type]="field.type" [name]="field.name" [id]="opt.key +  field.label"
+                    (change)="selectCounty($event,i)">
+
+
+            </div>
+        </div>
+    </div>
+    <!-- add dynamic controls -->
+    @if(getCountry==='in')
+    {
+    <label for="">State</label>
+    <input type="text" [formControlName]="'state'">
+    }<br />
+    <button (click)="onClick()">sumit </button>
+</form>
+
+<div>{{this.userFrom.value | json}}</div>
