@@ -56,6 +56,7 @@ export class DynamicForm implements OnInit {
       options: [
         { key: 'in', label: 'India' },
         { key: 'us', label: 'USA' },
+        { key: 'as', label: 'AUS' },
       ],
     },
     {
@@ -102,37 +103,53 @@ export class DynamicForm implements OnInit {
       }
     });
   }
-  // add dynamic from data
+  // get realtime typing data
   get getCountry() {
     return this.userFrom.get('country')?.value;
   }
 
+  get getState() {
+    return this.userFrom.get('state')?.value;
+  }
+  /**
+   * When state tn here add set validators
+   * not I removed the validation
+   */
+
+  addDynamicValidation() {
+    if (this.getState === 'tn') {
+      this.userFrom.get('street')?.setValidators([Validators.required]);
+    } else {
+      this.userFrom.get('street')?.clearValidators();
+    }
+    this.userFrom.get('street')?.updateValueAndValidity();
+  }
+
   onChangegender() {
     console.log('d', this.getCountry);
-    if (this.getCountry == 'in') {
+    if (this.getCountry !== 'as') {
       this.userFrom.addControl(
         'state',
         this.formBuilder.control('', Validators.required)
       );
+      this.userFrom.addControl('street', this.formBuilder.control(''));
     }
   }
 
   selectCounty(event: any, i: number) {
-    console.log('dd', event.target.checked);
     const hobbyes = this.userFrom.get('hobby') as FormArray;
     const item = this.radioOpt.find((_, index) => i == index);
+    //pushing array to the formArray
     if (event.target.checked) {
       hobbyes.push(new FormControl(item.key));
     } else {
-      const index = hobbyes.controls.findIndex(
-        (_, i) => _ == event.target.value
-      );
-      console.log('232', item);
+      const index = hobbyes.controls.findIndex((_, i) => _ == item);
+      hobbyes.removeAt(index);
     }
   }
 
   onClick() {
-    console.log('clicked', this.userFrom.value);
+    console.log('clicked', this.userFrom.value, this.userFrom.valid);
     this.userFrom.markAllAsDirty();
   }
 }

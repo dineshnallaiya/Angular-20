@@ -45,11 +45,17 @@
         </div>
     </div>
     <!-- add dynamic controls -->
-    @if(getCountry==='in')
+    @if(getCountry ==='in' || getCountry ==='us')
     {
     <label for="">State</label>
-    <input type="text" [formControlName]="'state'">
-    }<br />
+    <input type="text" [formControlName]="'state'" (blur)="addDynamicValidation()">
+    }
+    @if(getState ==='tn')
+    {
+    <label for="">State</label>
+    <input type="text" [formControlName]="'street'" (blur)="addDynamicValidation()">
+    }
+    <br />
     <button (click)="onClick()">sumit </button>
 </form>
 
