@@ -14,4 +14,9 @@ export const routes: Routes = [
         (c) => c.DynamicForm
       ),
   },
+  {
+    path: 'table',
+    loadComponent: () =>
+      import('../app/components/table/table').then((c) => c.Table),
+  },
 ];
