@@ -19,4 +19,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('../app/components/table/table').then((c) => c.Table),
   },
+  {
+    path: 'inputmask',
+    loadComponent: () =>
+      import('../app/components/input-mask/parentinput/parentinput').then(
+        (c) => c.Parentinput
+      ),
+  },
 ];

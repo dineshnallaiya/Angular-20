@@ -1,0 +1,11 @@
+<div>
+
+    <label>tel</label>&nbsp;
+
+    <input type="text" maxlength="11" telePhone>
+    <label>Name</label>&nbsp;
+    <input type="text" [(ngModel)]="name" (input)="eventTrigger()"><br><br>
+
+
+    <app-input-mask [(converted)]="converted" />
+</div>
