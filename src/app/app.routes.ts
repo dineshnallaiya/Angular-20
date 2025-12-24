@@ -26,4 +26,11 @@ export const routes: Routes = [
         (c) => c.Parentinput
       ),
   },
+  {
+    path: 'datePicker',
+    loadComponent: () =>
+      import(
+        '../app/components/datepicker/display-datepicker/display-datepicker'
+      ).then((c) => c.DisplayDatepicker),
+  },
 ];

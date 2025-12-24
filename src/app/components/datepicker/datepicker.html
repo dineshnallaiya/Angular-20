@@ -1,0 +1,15 @@
+<p>{{selctedMonth()?.month}}</p>
+<div style="display:flex;width: 500px;">
+    @for(day of days;let i = $index; track i){
+    <label for="" style="flex:1"> {{day}} </label>
+    }
+</div>
+@for(date of weeks;let i= $index; track i){
+<div style="display:flex;width: 500px;">
+
+    @for(item of date; let j= $index; track j){
+    <label style="flex:1; flex-wrap: nowrap;">{{item}} </label>
+    }
+
+</div>
+}

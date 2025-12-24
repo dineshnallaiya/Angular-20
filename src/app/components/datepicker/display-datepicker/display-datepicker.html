@@ -1,0 +1,8 @@
+<p>Select a month to display datepicker</p>
+
+<select name="datapicker" id="date" (change)="monthChange($event)">
+    @for(month of months; track month.id){
+    <option [value]="month.month">{{month.month}}</option>
+    }
+</select>
+<app-datepicker [selctedMonth]="selctedMonth"></app-datepicker>
