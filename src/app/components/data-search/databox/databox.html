@@ -1,0 +1,21 @@
+<button (click)="changeFilterType()">
+    {{filterType}}
+</button>
+<ol>
+    @for(item of filterRecord;let i= $index; track i){
+    <li>
+        {{item.name}} - {{item.age}}
+    </li>
+    }
+</ol>
+<div class="card-header" style="background-color: aquamarine;">
+    <ng-content></ng-content>
+</div>
+<div class="card-body" #da>
+    <ng-content></ng-content>
+</div>
+<div class="card-footer">
+    <ng-content></ng-content>
+</div>
+
+<ng-content></ng-content>

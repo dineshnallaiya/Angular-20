@@ -33,4 +33,11 @@ export const routes: Routes = [
         '../app/components/datepicker/display-datepicker/display-datepicker'
       ).then((c) => c.DisplayDatepicker),
   },
+  {
+    path: 'data-server',
+    loadComponent: () =>
+      import('../app/components/data-search/data-search').then(
+        (c) => c.DataSearch
+      ),
+  },
 ];
