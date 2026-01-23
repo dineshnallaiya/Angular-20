@@ -8,14 +8,16 @@
     </li>
     }
 </ol>
-<div class="card-header" style="background-color: aquamarine;">
-    <ng-content></ng-content>
+
+<div>
+    <ng-content select=".header"></ng-content>
 </div>
-<div class="card-body" #da>
-    <ng-content></ng-content>
+
+<div class="body">
+    <ng-content select=".body"> </ng-content>
 </div>
-<div class="card-footer">
-    <ng-content></ng-content>
+<div class="footer">
+    <ng-content select=".footer"></ng-content>
 </div>
 
 <ng-content></ng-content>

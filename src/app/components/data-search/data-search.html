@@ -3,18 +3,27 @@
 <input type="search" (input)="search($event)">
 
 <app-databox [searchInput]="searchInput">
+    <div class="header">
+        <p #colorChange>
+            Hi
+        </p>
+        <p #colorChange>
+            ji
+        </p>
 
-    <div class="header" #header>header</div>
-    <div class="body">body</div>
+    </div>
+    <p class="body">body</p>
 
-    <div class="footer" style="background-color: aqua;">footer os</div>
+    <div class="footer">footer os</div>
     <div class="other"> other</div>
-
-
 </app-databox>
-<app-databox>
-    <div class="header">header 2</div>
-    <div class="body">body 2</div>
-    <div class="footer" style="background-color: rgb(86, 140, 21);">footer 3</div>
-    <div class="other"> other 4</div>
-</app-databox>
+
+<!-- <app-databox>
+    <div style="background-color: rgb(226, 241, 206);">
+
+        <div class="header" #header>header 2</div>
+        <div class="body">body 2</div>
+        <div class="footer">footer 3</div>
+        <div class="other"> other 4</div>
+    </div>
+</app-databox> -->

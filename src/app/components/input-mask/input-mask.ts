@@ -11,9 +11,7 @@ export class InputMask implements OnInit {
   converted = model<string>('jj');
   constructor() {
     effect(() => {
-      console.log('Child initial value:', this.converted());
       if (this.converted() == 'a') {
-        console.log('dzzzzz');
         setTimeout(() => {
           this.converted.set('dd');
         });

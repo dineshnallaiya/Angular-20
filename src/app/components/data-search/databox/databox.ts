@@ -2,13 +2,16 @@ import {
   AfterContentInit,
   Component,
   ContentChild,
-  contentChild,
+  ContentChildren,
   effect,
   ElementRef,
   input,
   OnInit,
+  QueryList,
+  Renderer2,
 } from '@angular/core';
 import { SortingPipe } from '../../../pipe/sorting.pipe';
+import { DataSearch } from '../data-search';
 
 @Component({
   selector: 'app-databox',
@@ -19,7 +22,12 @@ import { SortingPipe } from '../../../pipe/sorting.pipe';
 })
 export class Databox implements AfterContentInit {
   searchInput = input('');
-  @ContentChild('header') header!: ElementRef;
+  // v20
+  // @ContentChild('header') contentColor!: ElementRef;
+  // @ContentChildren('colorChange', { descendants: true, read: ElementRef })
+  // contentChildren!: QueryList<ElementRef>;
+  @ContentChildren('colorChange', { descendants: true })
+  contentChildren!: QueryList<ElementRef>;
   filterType = 'asc';
   data = [
     { name: 'zora', age: 24 },
@@ -33,13 +41,16 @@ export class Databox implements AfterContentInit {
     { name: 'kayaluu', age: 21 },
   ];
   filterRecord: any[] = [];
-  constructor(private SortingPipe: SortingPipe, private el: ElementRef) {
+  constructor(
+    private SortingPipe: SortingPipe,
+    private renderer: Renderer2,
+  ) {
     this.filterRecord = this.SortingPipe.transform(this.data, this.filterType);
     effect(() => {
       let searchText = this.searchInput();
       console.log('searchText', searchText);
       this.filterRecord = this.data.filter((item: any) =>
-        item.name.includes(searchText)
+        item.name.includes(searchText),
       );
       console.log('searchText', this.filterRecord);
     });
@@ -48,10 +59,14 @@ export class Databox implements AfterContentInit {
     this.filterType = this.filterType == 'asc' ? 'desc' : 'asc';
     this.filterRecord = this.SortingPipe.transform(
       this.filterRecord,
-      this.filterType
+      this.filterType,
     );
   }
   ngAfterContentInit(): void {
-    this.header.nativeElement.style.cssText = 'font-weight: 500; color: green;';
+    console.log(this.contentChildren);
+    this.contentChildren.forEach((el) => {
+      this.renderer.setStyle(el.nativeElement, 'color', 'red');
+    });
+    // this.renderer.setStyle(this.contentColor.nativeElement, 'color', 'blue');
   }
 }
